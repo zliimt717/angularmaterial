@@ -5,12 +5,13 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { RouterModule, Routes } from '@angular/router';
-import { DemoModule } from './demo/demo.module';
+
 
 
 const routes:Routes=[
+  {path:'contactmanager', loadChildren:() => import('./contactmanager/contactmanager.module').then(m=>m.ContactmanagerModule)},
   {path:'demo', loadChildren:() => import('./demo/demo.module').then(m=>m.DemoModule)},
-  {path:'**', redirectTo:'demo'}
+  {path:'**', redirectTo:'contactmanager'}
 ];
 
 @NgModule({
