@@ -8,15 +8,15 @@ import { MaterialModule } from '../shared/material.module';
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { Routes,RouterModule } from '@angular/router';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import { MatCardModule } from '@angular/material/card';
+import { UserService } from './services/user.service';
+import {HttpClientModule} from '@angular/common/http';
+import { NotesComponent } from './components/notes/notes.component';
 
 
 const routes:Routes=[
   {path:'', component:ContactmanagerAppComponent,
    children:[
+    {path:':id',component:MainContentComponent},
     {path:'',component:MainContentComponent}
    ]
   },
@@ -28,18 +28,19 @@ const routes:Routes=[
     ContactmanagerAppComponent,
     ToolbarComponent,
     MainContentComponent,
-    SidenavComponent
+    SidenavComponent,
+    NotesComponent
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
     MaterialModule,
     FlexLayoutModule,
     FormsModule,
-    MatSidenavModule,
-    MatListModule,
-    MatToolbarModule,
-    MatCardModule,
     RouterModule.forChild(routes)
+  ],
+  providers:[
+    UserService
   ]
 })
 export class ContactmanagerModule {
